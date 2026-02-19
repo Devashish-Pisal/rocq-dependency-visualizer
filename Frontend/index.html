@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="de" data-theme="light">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rocq Visualizer</title>
+  <link rel="stylesheet" href="/Frontend/style-index.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+  <div class="circle circle-1"></div>
+  <div class="circle circle-2"></div>
+
+  <nav class="navbar">
+    <div class="logo">
+      <i class="fa-solid fa-project-diagram"></i> RocqVisualizer
+    </div>
+    
+    <div class="nav-actions">
+      <button id="themeBtn" class="icon-btn" title="Theme wechseln">
+        <i class="fa-solid fa-circle-half-stroke"></i>
+      </button>
+      
+      <button id="openHelp" class="styled-instruction-btn">
+        <i class="fa-solid fa-book"></i> Instructions
+      </button>
+    </div>
+  </nav>
+
+  <main class="hero-section">
+    <div class="hero-content">
+      
+      <h1>Understand your code <br> <span class="highlight">Visualize Dependencys</span></h1>
+      <p class="subtitle">
+        Upload Coq files (<strong>.v</strong>) or Dependency-Graphs (<strong>.dpd</strong>) <br>
+        We analyze and render your project interactively
+      </p>
+
+      <div class="panel upload-card">
+        <form id="uploadForm">
+          
+          <div id="dropzone" class="dropzone">
+            <div class="upload-area">
+              <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+              <h3>Save files here</h3>
+              <p>or click to select</p>
+              
+              <input id="fileInput" name="uploaded_files" class="file-input" type="file" multiple accept=".dpd,.v" />
+              
+              <div class="hint">Supported: <code>.dpd</code> and <code>.v</code> </div>
+            </div>
+          </div>
+
+          <div id="fileList" class="filelist"></div>
+
+          <div class="submit-wrap">
+            <button id="submitBtn" class="btn cta-button" type="submit" disabled>
+              <i class="fa-solid fa-rocket"></i> generate Graph
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="features">
+        <div class="feature-item">
+          <i class="fa-solid fa-code"></i> <span>Coq Native</span>
+        </div>
+        <div class="feature-item">
+          <i class="fa-solid fa-layer-group"></i> <span>Instant Visualization</span>
+        </div>
+        <div class="feature-item">
+          <i class="fa-solid fa-bolt"></i> <span>Fast Parsing</span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="/Frontend/script-index.js"></script>
+</body>
+</html>

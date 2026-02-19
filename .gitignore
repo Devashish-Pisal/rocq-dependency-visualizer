@@ -1,0 +1,23 @@
+#Ignore directory pyache
+Tests/__pycache__/
+Backend/__pycache__/
+.idea
+.coverage
+
+
+# Ingore files which are created during compilation of the .v files
+*.aux
+*.vok
+*.vos
+*.v
+*.dpd
+*.vo
+*.glob
+
+/Backend/*.aux
+/Backend/*.vok
+/Backend/*.vos
+/Backend/*.v
+/Backend/*.dpd
+/Backend/*.vo
+/Backend/*.glob

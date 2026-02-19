@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Error</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+    .error {
+      background: #fee;
+      border: 1px solid #fcc;
+      padding: 15px;
+      border-radius: 5px;
+      margin: 20px 0;
+    }
+    .error-message {
+      color: #c00;
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    a {
+      display: inline-block;
+      margin-top: 15px;
+      color: #0066cc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>Error</h1>
+  <div class="error">
+    <p class="error-message" id="errorMessage">Loading error...</p>
+  </div>
+  <a href="/">← Go back to upload</a>
+
+  <script>
+    fetch('/api/error')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('errorMessage').textContent = data.error;
+      })
+      .catch(() => {
+        document.getElementById('errorMessage').textContent = 'Failed to load error message';
+      });
+  </script>
+</body>
+</html>
+
+

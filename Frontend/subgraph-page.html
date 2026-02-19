@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rocq Graph Viewer - Subgraph</title>
+    <link rel="stylesheet" href="/Frontend/style-subgraph-page.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.css"/>
+</head>
+<body>
+
+<div class="circle circle-1"></div>
+<div class="circle circle-2"></div>
+
+<aside id="controls" class="glass-panel">
+    
+    <div class="sidebar-header">
+        <div class="header-title">
+            <h3><i class="fa-solid fa-diagram-project"></i> Subgraph</h3>
+        </div>
+        <button id="themeBtn" class="icon-btn" title="Toggle Theme">
+            <i class="fa-solid fa-circle-half-stroke"></i>
+        </button>
+    </div>
+
+    <div class="scrollable-content">
+        <div class="control-group">
+            <label>Search:</label>
+            <div class="search-group">
+                <input type="text" id="search-input" class="styled-input" placeholder="Search nodes..."/>
+                <button id="search-button" class="primary-btn icon-only"><i class="fa-solid fa-search"></i></button>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label><i class="fa-solid fa-sitemap"></i> Layout:</label>
+            <select id="layout-select" class="styled-select">
+                <option value="select" disabled selected>Select</option>
+                <option value="cola">cola</option>
+                <option value="klay">klay</option>
+                <option value="cose-bilkent">cose bilkent</option>
+                <option value="fcose">fcose</option>
+                <option value="dagre">dagre</option>
+                <option value="spread">spread</option>
+                <option value="circle">circle</option>
+                <option value="concentric">concentric</option>
+                <option value="breadthfirst">breadthfirst</option>
+                <option value="grid">grid</option>
+                <option value="cose">cose</option>
+            </select>
+        </div>
+
+        <div class="control-group">
+            <label><i class="fa-solid fa-download"></i> Download:</label>
+            <div id="download-buttons" class="grid-buttons">
+                <button id="download-png" class="secondary-btn"><i class="fa-solid fa-image"></i> PNG</button>
+                <button id="download-svg" class="secondary-btn"><i class="fa-solid fa-bezier-curve"></i> SVG</button>
+                <button id="download-pdf" class="secondary-btn"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+                <button id="download-data" class="secondary-btn"><i class="fa-solid fa-file-code"></i> Data</button>
+            </div>
+        </div>
+    </div>
+</aside>
+
+<main>
+    <div id="loader-overlay">
+        <div class="loader-content glass-panel">
+            <div class="spinner"></div>
+            <p>Rendering Subgraph...</p>
+        </div>
+    </div>
+
+    <div id="cy"></div>
+
+    <div id="utility-bar">
+        <div id="instructions-button" class="glass-btn">
+            <i class="fa-solid fa-book"></i> Instructions
+        </div>
+        
+        <div class="graph-legend glass-panel">
+            <h3>Legend</h3>
+            <ul>
+                <li><span class="dot" style="background-color: #7C4DFF;"></span> <span>Inductive (Purple)</span></li>
+                <li><span class="dot" style="background-color: #40C4FF;"></span> <span>Constructor (Blue)</span></li>
+                <li><span class="dot" style="background-color: #FF6D00;"></span> <span>Constant (Orange)</span></li>
+                <li class="separator"></li>
+                <li><span class="dot" style="background-color: #f7ec77; border: 2px solid #ffe700;"></span> <span>Selected (Yellow)</span></li>
+                <li><span class="dot" style="background-color: #fb7777; border: 2px solid #ff0000;"></span> <span>Incoming (Red)</span></li>
+                <li><span class="dot" style="background-color: #4ef037; border: 2px solid #388e3c;"></span> <span>Outgoing (Green)</span></li>
+            </ul>
+        </div>
+
+        <div id="graph-stats" class="glass-panel">
+            <h3><i class="fa-solid fa-chart-simple"></i> Statistics</h3>
+            <div class="stat-row">
+                <span>Nodes:</span>
+                <span id="stat-nodes" class="stat-value">0</span>
+            </div>
+            <div class="stat-row">
+                <span>Edges:</span>
+                <span id="stat-edges" class="stat-value">0</span>
+            </div>
+        </div>
+    </div>
+    <div id="zoom-controls">
+        <div class="glass-panel-row">
+            <button id="zoom-in" class="icon-btn"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+            <button id="zoom-out" class="icon-btn"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+        </div>
+    </div>
+</main>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js"></script>
+<script src="/Frontend/lib/cytoscape.min.js"></script>
+<script src="https://unpkg.com/cytoscape-qtip@2.7.1/cytoscape-qtip.js"></script>
+<script src="https://unpkg.com/layout-base@2.0.1/layout-base.js"></script>
+<script src="https://unpkg.com/webcola@3.4.0/WebCola/cola.min.js"></script>
+<script src="https://unpkg.com/cytoscape-cola@2.5.1/cytoscape-cola.js"></script>
+<script src="https://unpkg.com/klayjs@0.4.1/klay.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/cytoscape-klay@3.1.4/cytoscape-klay.min.js"></script>
+<script src="https://unpkg.com/avsdf-base@1.0.0/avsdf-base.js"></script>
+<script src="https://unpkg.com/cose-base@1.0.3/cose-base.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/cytoscape-fcose@2.2.0/cytoscape-fcose.min.js"></script>
+<script src="https://unpkg.com/cytoscape-cose-bilkent@4.1.0/cytoscape-cose-bilkent.js"></script>
+<script src="https://unpkg.com/cose-bilkent@4.1.0/cytoscape-cose-bilkent.js"></script>
+<script src="https://unpkg.com/dagre@0.8.5/dist/dagre.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/cytoscape-dagre@2.5.0/cytoscape-dagre.min.js"></script>
+<script src="https://unpkg.com/weaverjs@1.2.0/dist/weaver.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/cytoscape-spread@3.0.0/cytoscape-spread.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/cytoscape-edge-bundling@3.0.2/cytoscape-edge-bundling.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://unpkg.com/cytoscape-svg@0.4.0/cytoscape-svg.js"></script>
+<script src="/Frontend/script-subgraph-page.js"></script>
+
+<script>
+    const root = document.documentElement;
+    const themeBtn = document.getElementById("themeBtn");
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) root.setAttribute('data-theme', savedTheme);
+    
+    themeBtn?.addEventListener('click', () => {
+        const newTheme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
+</script>
+</body>
+</html>

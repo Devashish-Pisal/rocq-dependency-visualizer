@@ -1,0 +1,15 @@
+
+
+services:
+  rocq-backend:
+    build: .
+    container_name: rocq-container
+    ports:
+      - "8000:8000"  # Erreichbar unter localhost:8000
+    volumes:
+      # Das hier ist wichtig für Entwicklung:
+      # Es spiegelt deinen lokalen Ordner in den Container.
+      # Wenn du im Code was änderst, sieht der Container das sofort (nach Neustart).
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
