@@ -1,4 +1,4 @@
-# 🔍 Rocq Dependency Visualizer
+# Rocq Dependency Visualizer
 
 A web-based tool that automatically analyzes and visualizes dependency graphs for **Rocq** (formerly Coq) projects. Upload `.v` source files or `.dpd` dependency files and explore your project's structure interactively.
 
@@ -7,7 +7,7 @@ A web-based tool that automatically analyzes and visualizes dependency graphs fo
 
 ---
 
-## 📸 Screenshots
+##  Screenshots
 
 <p align="center">
   <img src="assets/upload-page.png" alt="Upload Page" width="850"/>
@@ -23,31 +23,31 @@ A web-based tool that automatically analyzes and visualizes dependency graphs fo
 
 ---
 
-## 💡 Motivation
+##  Motivation
 
 In large Rocq projects, dependencies between modules can grow complex quickly — making maintenance and refactoring difficult. This tool automatically parses those dependencies and presents them as an interactive, navigable graph, helping developers and researchers better understand their proof structures.
 
 ---
 
-## ✨ Features
+##  Features
 
-- 📂 Upload `.v` (Rocq source) or `.dpd` (dependency graph) files — supports multiple files at once
-- 🔄 Auto-compilation of `.v` files on the backend using `coqc`
-- 🕸️ Interactive graph visualization powered by **Cytoscape.js**
-- 🎨 Node color-coding by kind: `inductive`, `constructor`, `constant`
-- 🔎 Search nodes by name or ID
-- 🏷️ Highlight nodes/edges by declaration type: `Lemma`, `Theorem`, `Definition`, `Fixpoint`, and more
-- 🎨 Custom node coloring for Lemma, Definition, and Theorem nodes
-- 📊 Graph statistics (node/edge count)
-- 🗂️ Filter view by individual uploaded file
-- 🧩 Subgraph view — click a node to explore its direct neighbors in a new tab
-- 📐 11 layout algorithms: `cola`, `klay`, `dagre`, `fcose`, `cose-bilkent`, and more
-- 💾 Export as PNG, SVG, PDF, or JSON
-- 🌙 Light/Dark theme toggle
+- Upload `.v` (Rocq source) or `.dpd` (dependency graph) files — supports multiple files at once
+- Auto-compilation of `.v` files on the backend using `coqc`
+- Interactive graph visualization powered by **Cytoscape.js**
+- Node color-coding by kind: `inductive`, `constructor`, `constant`
+- Search nodes by name or ID
+- Highlight nodes/edges by declaration type: `Lemma`, `Theorem`, `Definition`, `Fixpoint`, and more
+- Custom node coloring for Lemma, Definition, and Theorem nodes
+- Graph statistics (node/edge count)
+- Filter view by individual uploaded file
+- Subgraph view — click a node to explore its direct neighbors in a new tab
+- 11 layout algorithms: `cola`, `klay`, `dagre`, `fcose`, `cose-bilkent`, and more
+- Export as PNG, SVG, PDF, or JSON
+- Light/Dark theme toggle
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Layer     | Technologies                                      |
 |-----------|---------------------------------------------------|
@@ -59,7 +59,7 @@ In large Rocq projects, dependencies between modules can grow complex quickly �
 
 ---
 
-## ⚙️ System Requirements
+##  System Requirements
 
 - Python 3.12.8+
 - Packages: `fastapi`, `starlette`, `pytest`, `pytest-cov`
@@ -72,7 +72,7 @@ In large Rocq projects, dependencies between modules can grow complex quickly �
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 project-root/
@@ -96,7 +96,7 @@ project-root/
 
 ---
 
-## 🚀 Running Locally
+##  Running Locally
 
 ### Option 1 — FastAPI (Direct)
 
@@ -131,7 +131,7 @@ docker-compose down
 
 ---
 
-## 🧪 Running Tests & Coverage
+##  Running Tests & Coverage
 
 ```bash
 # Run tests with coverage report
@@ -142,7 +142,7 @@ Open `htmlcov/index.html` in your browser to view the coverage report.
 
 ---
 
-## 📖 How to Use
+##  How to Use
 
 1. Open the app in your browser
 2. Drag & drop or select `.v` or `.dpd` files
@@ -155,7 +155,7 @@ Open `htmlcov/index.html` in your browser to view the coverage report.
 
 ---
 
-## 👥 Contributors
+##  Contributors
 
 Developed as a **Bachelor Project** at **RPTU Kaiserslautern** during Winter Semester 2025/26.
 
