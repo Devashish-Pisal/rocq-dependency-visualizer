@@ -21,3 +21,5 @@ Backend/__pycache__/
 /Backend/*.dpd
 /Backend/*.vo
 /Backend/*.glob
+
+rocq-dependency-visualizer-repo-kb.md
