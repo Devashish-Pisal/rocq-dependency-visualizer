@@ -6,6 +6,11 @@ A web-based tool that automatically analyzes and visualizes dependency graphs fo
 > ⚠️ Hosted on Render free tier — may be unavailable if the monthly usage limit is reached.
 
 ---
+## Demo
+
+![Demo](assets/demo.gif)
+
+<!-- 
 
 ##  Screenshots
 
@@ -20,6 +25,8 @@ A web-based tool that automatically analyzes and visualizes dependency graphs fo
 <p align="center">
   <img src="assets/instructions-page.png" alt="Instructions Page" width="850"/>
 </p>
+
+-->
 
 ---
 
