@@ -1,0 +1,8 @@
+N: 210 "add_assoc" [body=yes, kind=cnst, prop=yes, ];
+N: 206 "add_comm" [body=yes, kind=cnst, prop=yes, ];
+N: 211 "one_plus_one" [body=yes, kind=cnst, prop=yes, ];
+N: 207 "plus_n_Sm" [body=yes, kind=cnst, prop=yes, ];
+N: 208 "successor_plus_one" [body=yes, kind=cnst, prop=yes, ];
+N: 209 "zero_neutral_right" [body=yes, kind=cnst, prop=yes, ];
+E: 206 207 [weight=1, ];
+E: 206 209 [weight=1, ];

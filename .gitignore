@@ -22,4 +22,8 @@ Backend/__pycache__/
 /Backend/*.vo
 /Backend/*.glob
 
+# Keep the sample input files
+!/examples/*.v
+!/examples/*.dpd
+
 rocq-dependency-visualizer-repo-kb.md
